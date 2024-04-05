@@ -4,41 +4,46 @@
 
 template<typename T, int size>
 class TStack {
- private:
-  T* data = {};
-  int top = 1, size = 0;
-  void resize(int nsize) {
-    T* temp = new T[nsize];
-    for (int i = 0; i < size; i++) {
-      temp[i] = data[i];
-    }
-    delete data;
-    data = temp;
-    size = nsize;
-  }
+private:
+    T* data = new T[100];
+    int top = 0, size = 100;
 
- public:
-  TStack() {
-    data = new T[SIZE];
-    size = SIZE;
-    top = 1;
-  }
-  ~TStack() { delete[] data; }
-  void push(T item) {
-    if (top >= size) {
-      resize(size * 2);
+public:
+    TStack() {
+        data = new T[size];
+        size = size;
+        top = 0;
     }
-    data[top] = item;
-    top++;
-  }
-  T pop() {
-    if (top == 1) {
-      throw "Stack is empty!";
-    } else {
-      top -= 1;
-      return data[top];
+    ~TStack() { delete[] data; }
+    void push(T item) {
+        data[top] = item;
+        top++;
     }
-  }
+    T pop() {
+        if (top == 0) {
+            throw "Stack is empty!";
+        }
+        else {
+            top -= 1;
+            return data[top];
+        }
+    }
+    T check() {
+        if (top == 0) {
+            throw "Stack is empty!";
+        }
+        else {
+            return data[top - 1];
+        }
+    }
+    bool isempty() {
+        if (top == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 };
 
 #endif  // INCLUDE_TSTACK_H_
