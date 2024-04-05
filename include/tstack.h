@@ -3,7 +3,7 @@
 #define INCLUDE_TSTACK_H_
 
 template <typename T, int SIZE>
-typedef class TStack {
+class TStack { typedef
  private:
   T *data = new T[100];
   int top = 0, size = 100;
